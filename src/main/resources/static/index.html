@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+        $.ajax({
+            type: "GET",
+            url: "/getValue",
+            success: (data) => {
+
+                console.log(data);
+            	setTimeout(render(data),3000)
+
+            }
+        });
+
+        function render(data){
+            $('#contents').html(data);
+        }
+    </script>
+
+
+</head>
+<body>
+
+여긴 안됨
+여긴 안됨
+여긴 안됨
+여긴 안됨
+여긴 안됨
+여긴 안됨
+여긴 안됨
+여긴 안됨
+여긴 안됨
+
+
+
+	/spring-boot-jsp/src/main/resources/static/index.html
+	<h1>Hello World!</h1>
+	<div id="contents"></div>
+
+
+</body>
+</html>

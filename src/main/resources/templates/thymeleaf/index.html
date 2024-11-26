@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index 타임리프</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+		let txt =''
+        $.ajax({
+            type: "GET",
+            url: "/getValue",
+            success: (data) => {
+            	txt = data
+                console.log('success data', data);
+           		setTimeout(() => {
+           		  console.log("2초 지연. data", data);
+           		  render(data)
+           		}, "2000");
+            }
+        });
+
+        let nIntervId2 = setInterval(flashText2(txt), 1000);
+
+        function flashText2(data) {
+            console.log('flashText 2',data);
+        }
+        function render(data){
+            console.log('2',data);
+            $('#contents').html(data);
+        }
+        function flashText() {
+       	  const oElem = document.getElementById("header");
+       	  const oElem2 = document.getElementById("contents");
+       	  oElem.className = oElem.className === "go" ? "stop" : "go";
+       	  oElem2.className = oElem2.className === "go" ? "stop" : "go";
+       	}
+
+
+
+        let nIntervId;
+
+        function changeColor() {
+          // 간격이 이미 설정되어 있는지 확인합니다
+          if (!nIntervId) {
+            nIntervId = setInterval(flashText, 1000);
+          }
+        }
+
+
+
+        function stopTextColor() {
+          clearInterval(nIntervId);
+          clearInterval(nIntervId2);
+          // 변수에서 intervalID를 해체합니다
+          nIntervId = null;
+          nIntervId2 = null;
+        }
+
+
+    </script>
+<style type="text/css">
+.go {
+	color: green;
+}
+
+.stop {
+	color: red;
+}
+</style>
+
+	<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+	/spring-boot-jsp/src/main/resources/templates/thymeleaf/index.html
+
+	<h1 id="header" class="go">Hello World!</h1>
+	<div id="contents" class="stop"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+<script>
+        document.getElementById("start").addEventListener("click", changeColor);
+        document.getElementById("stop").addEventListener("click", stopTextColor);
+    </script>
+</body>
+</html>
