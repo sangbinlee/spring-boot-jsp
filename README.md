@@ -9,15 +9,21 @@
 
 ### 1 실행
 실행시 문제점: http://localhost:8080/college/form.jsp
-"Path with "WEB-INF" or "META-INF": [WEB-INF/views/form.jsp]"
-
-* ㅇㅇㅇㅇ
-* [Spring Boo
 
 
+* case 1  - 문제 없어짐
+
+		"Path with "WEB-INF" or "META-INF": [WEB-INF/views/form.jsp]"
+
+* case 2
+
+		Whitelabel Error Page
+		This application has no explicit mapping for /error, so you are seeing this as a fallback.
+		Thu Nov 28 01:15:22 KST 2024
+		There was an unexpected error (type=Not Found, status=404).
+		JSP file [/college/form.jsp] not found
 
 
-"Path with "WEB-INF" or "META-INF": [WEB-INF/views/form.jsp]"
 
 
 
@@ -29,7 +35,38 @@
 
 
 ### Guides
-The following guides illustrate how to use some features concretely:
+@GetMapping에 jsp로 끝나면 호출이 안됨:
+
+	@GetMapping("/form.jsp")// 호출 안됨
+	@GetMapping("/form.jsps")// 호출 됨 :
+
+
+
+
+
+### jsp 직접 호출하기
+* /src/main/webapp 폴더와 하위 폴더는 url로 직접 접근 가능함(jsp, html, css):
+* /src/main/webapp/WEB-INF 폴더는 url로 직접 접근 불가:
+
+
+	└─webapp
+	    │  common.css
+	    │  index.html
+	    │  index.jsp
+	    │  test.jsp
+	    │
+	    ├─sub1
+	    │      sub.css
+	    │      sub.html
+	    │      sub.jsp
+
+	http://localhost:8080/common.css
+	http://localhost:8080/index.html
+	http://localhost:8080/index.jsp
+	http://localhost:8080/sub1/sub.css
+	http://localhost:8080/sub1/sub.html
+	http://localhost:8080/sub1/sub.jsp
+
 
 * [Creating a Batch Service](https://spring.io/guides/gs/batch-processing/)
 * [Caching Data with Spring](https://spring.io/guides/gs/caching/)

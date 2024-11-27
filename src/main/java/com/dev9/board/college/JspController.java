@@ -26,7 +26,8 @@ public class JspController {
 	 * @return
 	 * @throws Exception
 	 */
-	@GetMapping("form.jsp")// 이건 안됨
+	@GetMapping("/form.jsp")// 호출 안됨
+//	@GetMapping("/form.jsps")// 호출 됨
 	public String formJsp(Model model) throws Exception {
 		log.info("//////////////////");
 		log.info("form.jsp");
@@ -36,10 +37,28 @@ public class JspController {
 		testList.add("b");
 		testList.add("c");
 		model.addAttribute("list", testList);
-		return "form";
-//		return "form2";
+//		return "form";
+		return "/form";
 	}
 
+	/**
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@GetMapping("/form.jsps")// 호출 됨
+	public String formJsps(Model model) throws Exception {
+		log.info("//////////////////");
+		log.info("form.jsp");
+		model.addAttribute("name", "/WEB-INF/form.jsp");
+		List<String> testList = new ArrayList<String>();
+		testList.add("a");
+		testList.add("b");
+		testList.add("c");
+		model.addAttribute("list", testList);
+//		return "form";
+		return "/form";
+	}
 
 	@GetMapping("board9/form2")
 //	@GetMapping("form.jsp")// 이건 안됨
@@ -79,7 +98,7 @@ public class JspController {
 		testList.add("c");
 		testList.add("c");
 		model.addAttribute("list", testList);
-		return "form2";
+		return "/form2";
 	}
 
 	@GetMapping("form")
@@ -92,16 +111,23 @@ public class JspController {
 		testList.add("a");
 		testList.add("b");
 		testList.add("c");
+		testList.add("c");
+		testList.add("c");
+		testList.add("c");
+		testList.add("c");
+		testList.add("c");
+		testList.add("c");
 		model.addAttribute("list", testList);
-		return "form";
-//		return "form2";
+//		return "form";
+		return "/form";
 	}
 
 	@GetMapping("form.do")
 	public ModelAndView formDo() {
 		log.info("//////////////////");
 		log.info("form.do");
-		ModelAndView mav = new ModelAndView("form");
+//		ModelAndView mav = new ModelAndView("form");
+		ModelAndView mav = new ModelAndView("/form");
 		mav.addObject("name", "JSP");
 
 		List<String> testList = new ArrayList<String>();

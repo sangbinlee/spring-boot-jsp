@@ -28,7 +28,7 @@ repositories {
 dependencies {
 
 
-	// jsp set
+	// ####################### jsp set
 	implementation 'org.springframework.boot:spring-boot-starter-tomcat'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	//스프링부트 2.0
