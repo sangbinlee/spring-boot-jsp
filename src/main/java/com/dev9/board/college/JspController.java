@@ -3,12 +3,15 @@ package com.dev9.board.college;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.dev9.common.Common;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,7 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/college")
 public class JspController {
 
-
+	@Autowired
+	private Common c;
 
 	/**
 	 * http://localhost:8080/college/form.jsp
@@ -126,6 +130,18 @@ public class JspController {
 	public ModelAndView formDo() {
 		log.info("//////////////////");
 		log.info("form.do");
+
+
+//		Common c = new Common();
+		String commonTest = c.commonTest();
+		log.info("외부 라이브러리 생성 및 추가 후 테스트 commonTest={}", commonTest);
+		log.info("@Autowired test :: 외부 라이브러리 생성 및 추가 후 테스트 commonTest={}", commonTest);
+
+
+
+
+
+
 //		ModelAndView mav = new ModelAndView("form");
 		ModelAndView mav = new ModelAndView("/form");
 		mav.addObject("name", "JSP");
